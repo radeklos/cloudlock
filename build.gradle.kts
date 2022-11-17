@@ -5,7 +5,7 @@ plugins {
     application
 }
 
-group = "com.github.com.radekloc"
+group = "com.github.com.radeklos"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -26,4 +26,14 @@ tasks.withType<KotlinCompile> {
 
 application {
     mainClass.set("MainKt")
+}
+
+subprojects {
+    apply {
+        plugin("org.jetbrains.kotlin.jvm")
+    }
+
+    repositories {
+        mavenCentral()
+    }
 }
