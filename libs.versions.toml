@@ -1,5 +1,26 @@
 [versions]
+spring = "5.3.23"
+kotest = "5.5.4"
+spring-boot = "2.7.3"
 
 [libraries]
+spring-boot-starter = { group = "org.springframework.boot", name = "spring-boot-starter", version.ref = "spring-boot" }
+spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+spring-boot-starter-data-jdbc = { group = "org.springframework.boot", name = "spring-boot-starter-data-jdbc", version.ref = "spring-boot" }
+spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "spring-boot" }
+spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test", version.ref = "spring-boot" }
+kotest-spring = { group = "io.kotest.extensions", name = "kotest-extensions-spring", version = "1.1.2" }
+kotlin-logging-jvm = { group = "io.github.microutils", name = "kotlin-logging-jvm", version = "2.1.21" }
+
+spring-context = { group = "org.springframework", name = "spring-context", version.ref = "spring" }
+spring-test = { group = "org.springframework", name = "spring-test", version.ref = "spring" }
+
+kotest-runner-junit = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
+kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
 
 [bundles]
+kotest = ["kotest-runner-junit", "kotest-assertions-core"]
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version = "2.6.5" }
+#jmh = { id = "me.champeau.jmh", version = "0.6.5" }
