@@ -4,6 +4,8 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":cloudlock-spring"))
+
     implementation(platform(libs.spring.boot.bom))
     implementation(libs.spring.boot.starter)
     implementation(libs.spring.boot.starter.web)
