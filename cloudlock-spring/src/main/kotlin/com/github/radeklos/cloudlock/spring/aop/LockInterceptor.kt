@@ -4,10 +4,11 @@ import com.github.radeklos.cloudlock.spring.core.CloudLockConfigurationExtractor
 import mu.KotlinLogging
 import org.aopalliance.intercept.MethodInterceptor
 import org.aopalliance.intercept.MethodInvocation
+import org.springframework.stereotype.Service
 
 class LockInterceptor(
-    var lockingExecutor: LockingExecutor,
-    var lockConfigurationExtractor: CloudLockConfigurationExtractor,
+    private var lockingExecutor: LockingExecutor,
+    private var lockConfigurationExtractor: CloudLockConfigurationExtractor,
     ) : MethodInterceptor {
 
     var log = KotlinLogging.logger {  }

@@ -12,6 +12,5 @@ dependencies {
     implementation(libs.kotlin.logging.jvm)
 
     testImplementation(libs.bundles.kotest)
-    testImplementation(libs.spring.boot.starter.test)
-    testImplementation(libs.kotest.spring)
+    testImplementation(libs.bundles.spring.test)
 }

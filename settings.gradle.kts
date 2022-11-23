@@ -10,7 +10,6 @@ dependencyResolutionManagement {
 }
 
 include(
-    ":cloudlock-core",
     ":cloudlock-spring",
 
     ":tests:spring-boot",

@@ -1,11 +1,9 @@
 package com.github.radeklos.cloudlock.spring.core
 
-import com.github.radeklos.cloudlock.CloudLock
-import org.springframework.core.annotation.AnnotatedElementUtils
-import org.springframework.stereotype.Service
+import com.github.radeklos.cloudlock.spring.annotation.CloudLock
 import java.lang.reflect.Method
+import org.springframework.core.annotation.AnnotatedElementUtils
 
-@Service
 class CloudLockConfigurationExtractor {
 
     fun extractConfiguration(method: Method): CloudLockConfig {

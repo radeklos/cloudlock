@@ -4,7 +4,6 @@ import com.github.radeklos.cloudlock.adapter.Adapter
 import com.github.radeklos.cloudlock.spring.core.CloudLockConfig
 import org.springframework.stereotype.Service
 
-@Service
 class LockingExecutor(var adapter: Adapter) {
 
     fun <T> execute(task: TaskWithResult<T>, config: CloudLockConfig): TaskResult<T> {
