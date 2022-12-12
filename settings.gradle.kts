@@ -1,4 +1,3 @@
-
 rootProject.name = "cloud-lock"
 
 dependencyResolutionManagement {

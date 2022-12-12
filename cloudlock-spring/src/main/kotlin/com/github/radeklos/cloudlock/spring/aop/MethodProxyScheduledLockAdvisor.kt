@@ -9,8 +9,8 @@ import org.springframework.aop.support.ComposablePointcut
 import org.springframework.aop.support.annotation.AnnotationMatchingPointcut
 
 class MethodProxyScheduledLockAdvisor(
-        private var lockingExecutor: LockingExecutor,
-        private var lockConfigurationExtractor: CloudLockConfigurationExtractor,
+    private var lockingExecutor: LockingExecutor,
+    private var lockConfigurationExtractor: CloudLockConfigurationExtractor,
 ) : AbstractPointcutAdvisor() {
 
     override fun getAdvice(): Advice {

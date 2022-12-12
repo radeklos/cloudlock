@@ -2,7 +2,7 @@ package com.github.radeklos.cloudlock.test.springboot
 
 import java.time.Instant
 
-object SchedulerMemory{
+object SchedulerMemory {
     private val mutableData: MutableList<Instant> = mutableListOf()
 
     val data: List<Instant>

@@ -16,23 +16,24 @@ class JooqRepository(dataSource: DataSource) : Repository {
 
     init {
         val connection = dataSource.connection
-        dslContext = DSL.using(connection, Settings()
-            .withRenderQuotedNames(RenderQuotedNames.ALWAYS)
-            .withRenderNameCase(RenderNameCase.AS_IS)
+        dslContext = DSL.using(
+            connection, Settings()
+                .withRenderQuotedNames(RenderQuotedNames.ALWAYS)
+                .withRenderNameCase(RenderNameCase.AS_IS)
         )
     }
 
     override fun createSchema() {
         dslContext.createTableIfNotExists(DSL.table(tableName))
-                .column("id", INTEGER.identity(true))
-                .column("lock_name", VARCHAR)
-                .column("updated_by", VARCHAR)
-                .column("locked", BOOLEAN)
-                .column("updated_at", TIMESTAMP)
-                .constraints(
-                    constraint("lock_table_pk").primaryKey("id"),
-                    constraint("cloud_lock_unique").unique("lock_name")
-                ).execute()
+            .column("id", INTEGER.identity(true))
+            .column("lock_name", VARCHAR)
+            .column("updated_by", VARCHAR)
+            .column("locked", BOOLEAN)
+            .column("updated_at", TIMESTAMP)
+            .constraints(
+                constraint("lock_table_pk").primaryKey("id"),
+                constraint("cloud_lock_unique").unique("lock_name")
+            ).execute()
     }
 
     override fun lock(lockName: String, hostname: String) {
@@ -45,19 +46,19 @@ class JooqRepository(dataSource: DataSource) : Repository {
 
     fun isLocked(lockName: String): Boolean {
         return dslContext.select(DSL.field("locked"))
-                .from(DSL.table(tableName))
-                .where(DSL.field("lock_name").eq(lockName))
-                .limit(1)
-                .fetchOne(DSL.field("locked", Boolean::class.java)) ?: false
+            .from(DSL.table(tableName))
+            .where(DSL.field("lock_name").eq(lockName))
+            .limit(1)
+            .fetchOne(DSL.field("locked", Boolean::class.java)) ?: false
     }
 
     private fun createLockedRecord(lockName: String, hostname: String, lock: Boolean) {
-       val insert = dslContext.insertInto(
-                DSL.table(tableName),
-                DSL.field("lock_name"),
-                DSL.field("updated_by"),
-                DSL.field("locked"),
-                DSL.field("updated_at")
+        val insert = dslContext.insertInto(
+            DSL.table(tableName),
+            DSL.field("lock_name"),
+            DSL.field("updated_by"),
+            DSL.field("locked"),
+            DSL.field("updated_at")
         )
             .values(lockName, hostname, lock, DSL.now())
             .onDuplicateKeyIgnore()

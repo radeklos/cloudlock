@@ -2,17 +2,15 @@ package com.github.radeklos.cloudlock.spring.aop
 
 import com.github.radeklos.cloudlock.adapter.Adapter
 import com.github.radeklos.cloudlock.spring.core.CloudLockConfig
-import org.springframework.stereotype.Service
 
 class LockingExecutor(var adapter: Adapter) {
 
     fun <T> execute(task: TaskWithResult<T>, config: CloudLockConfig): TaskResult<T> {
-        if (!adapter.isLocked()) {
+        if (!adapter.getStateAndLockWhenUnlocked(config)) {
             try {
-                adapter.lock()
                 return TaskResult.executed(task.call())
             } finally {
-                adapter.unlock()
+                adapter.unlock(config)
             }
         }
         return TaskResult.notExecuted()
@@ -31,11 +29,11 @@ data class TaskResult<T> private constructor(
 ) {
 
     companion object {
-        fun <T>executed(result: T?): TaskResult<T> {
+        fun <T> executed(result: T?): TaskResult<T> {
             return TaskResult(true, result)
         }
 
-        fun <T>notExecuted(): TaskResult<T> {
+        fun <T> notExecuted(): TaskResult<T> {
             return TaskResult(true, null)
         }
     }

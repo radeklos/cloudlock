@@ -4,7 +4,6 @@ import com.github.radeklos.cloudlock.spring.annotation.CloudLock
 import com.github.radeklos.cloudlock.spring.annotation.EnableCloudLock
 import mu.KotlinLogging
 import org.springframework.boot.Banner
-import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.builder.SpringApplicationBuilder
@@ -34,7 +33,8 @@ class ScheduledConfig {
     }
 
     open class ScheduledBean {
-        var log = KotlinLogging.logger {  }
+        var log = KotlinLogging.logger { }
+
         @CloudLock
         @Scheduled(fixedRate = 5_000)
         open fun scheduler() {

@@ -1,8 +1,8 @@
 package com.github.radeklos.cloudlock.spring.core
 
 import com.github.radeklos.cloudlock.spring.annotation.CloudLock
-import java.lang.reflect.Method
 import org.springframework.core.annotation.AnnotatedElementUtils
+import java.lang.reflect.Method
 
 class CloudLockConfigurationExtractor {
 
@@ -14,8 +14,8 @@ class CloudLockConfigurationExtractor {
     }
 
     private fun getAnnotation(method: Method): CloudLock {
-        return AnnotatedElementUtils.getMergedAnnotation(method, CloudLock::class.java) ?:
-            throw CloudLockConfigurationExtractorException("Cannot find `CloudLock` annotation")
+        return AnnotatedElementUtils.getMergedAnnotation(method, CloudLock::class.java)
+            ?: throw CloudLockConfigurationExtractorException("Cannot find `CloudLock` annotation")
     }
 }
 
