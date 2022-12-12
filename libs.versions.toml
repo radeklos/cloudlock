@@ -1,5 +1,35 @@
 [versions]
+spring = "5.3.23"
+kotest = "5.5.4"
+spring-boot = "2.7.3"
 
 [libraries]
+spring-boot-starter = { group = "org.springframework.boot", name = "spring-boot-starter", version.ref = "spring-boot" }
+spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+spring-boot-starter-data-jdbc = { group = "org.springframework.boot", name = "spring-boot-starter-data-jdbc", version.ref = "spring-boot" }
+spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "spring-boot" }
+spring-boot-starter-data-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa", version.ref = "spring-boot" }
+spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test", version.ref = "spring-boot" }
+
+kotest-spring = { group = "io.kotest.extensions", name = "kotest-extensions-spring", version = "1.1.2" }
+kotlin-logging-jvm = { group = "io.github.microutils", name = "kotlin-logging-jvm", version = "2.1.21" }
+
+kotest-runner-junit = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
+kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
+
+org-jooq-jooq = { group = 'org.jooq', name = 'jooq', version = '3.17.5' }
+h2 = { group = "com.h2database", name = "h2", version = "1.4.200" }
+postgresql = { group = "org.postgresql", name = "postgresql", version = "42.5.1" }
+mysql = { group = "mysql", name = "mysql-connector-java", version = "8.0.31" }
+
+hikari = { group = "com.zaxxer", name = "HikariCP", version = "5.0.1" }
+jakarta-xml-bind-api = { group = "jakarta.xml.bind", name = "jakarta.xml.bind-api", version = "2.3.2" }
+jaxb-api = { group = "javax.xml.bind", name = "jaxb-api", version = "2.3.1" }
+
 
 [bundles]
+kotest = ["kotest-runner-junit", "kotest-assertions-core"]
+spring-test = ["spring-boot-starter-test", "kotest-spring"]
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }

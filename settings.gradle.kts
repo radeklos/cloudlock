@@ -1,4 +1,3 @@
-
 rootProject.name = "cloud-lock"
 
 dependencyResolutionManagement {
@@ -6,12 +5,11 @@ dependencyResolutionManagement {
         create("libs") {
             from(files("libs.versions.toml"))
         }
-        create("test") {
-            from(files("test.libs.versions.toml"))
-        }
     }
 }
 
 include(
-    ":core",
+    ":cloudlock-spring",
+
+    ":tests:spring-boot",
 )
