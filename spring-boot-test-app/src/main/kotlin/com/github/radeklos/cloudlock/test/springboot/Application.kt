@@ -4,8 +4,6 @@ import com.github.radeklos.cloudlock.spring.annotation.CloudLock
 import com.github.radeklos.cloudlock.spring.annotation.EnableCloudLock
 import mu.KotlinLogging
 import org.springframework.boot.Banner
-import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -14,7 +12,6 @@ import org.springframework.scheduling.annotation.Scheduled
 
 @EnableCloudLock
 @EnableScheduling
-@SpringBootApplication(exclude = [DataSourceAutoConfiguration::class])
 class Application
 
 fun main(args: Array<String>) {
@@ -39,7 +36,6 @@ class ScheduledConfig {
         @Scheduled(fixedRate = 5_000)
         open fun scheduler() {
             log.info { "scheduler tick" }
-            SchedulerMemory.add()
         }
     }
 }

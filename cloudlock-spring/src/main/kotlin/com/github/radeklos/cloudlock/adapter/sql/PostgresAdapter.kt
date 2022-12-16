@@ -11,7 +11,8 @@ import org.jooq.impl.DSL
 
 class PostgresAdapter(private var repository: JooqRepository) : Adapter {
     override fun getStateAndLockWhenUnlocked(config: CloudLockConfig, hostname: String): LockState {
-        val inserted = repository.dslContext.insertInto(repository.table,
+        val inserted = repository.dslContext.insertInto(
+            repository.table,
             DSL.field(LOCK_NAME),
             DSL.field(UPDATED_BY),
             DSL.field(IS_LOCKED),
