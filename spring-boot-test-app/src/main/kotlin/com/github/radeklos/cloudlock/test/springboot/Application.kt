@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.scheduling.annotation.Scheduled
+import java.lang.Thread.sleep
+import java.time.Instant
 
 @EnableCloudLock
 @EnableScheduling
@@ -30,12 +32,14 @@ class ScheduledConfig {
     }
 
     open class ScheduledBean {
-        var log = KotlinLogging.logger { }
+
+        private var log = KotlinLogging.logger { }
 
         @CloudLock
         @Scheduled(fixedRate = 5_000)
         open fun scheduler() {
-            log.info { "scheduler tick" }
+            sleep(2_000)
+            log.info { "scheduler tick, at=${Instant.now()}" }
         }
     }
 }
