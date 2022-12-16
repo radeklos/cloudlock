@@ -1,7 +1,7 @@
 package com.github.radeklos.cloudlock.spring.configuration
 
 import com.github.radeklos.cloudlock.adapter.Adapter
-import com.github.radeklos.cloudlock.adapter.dummy.InMemoryAdapter
+import com.github.radeklos.cloudlock.adapter.InMemoryAdapter
 import com.github.radeklos.cloudlock.spring.aop.LockingExecutor
 import com.github.radeklos.cloudlock.spring.aop.MethodProxyScheduledLockAdvisor
 import com.github.radeklos.cloudlock.spring.core.CloudLockConfigurationExtractor

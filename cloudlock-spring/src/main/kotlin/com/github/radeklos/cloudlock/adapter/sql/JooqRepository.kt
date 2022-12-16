@@ -11,8 +11,17 @@ import javax.sql.DataSource
 
 class JooqRepository(dataSource: DataSource) : Repository {
 
-    private val dslContext: DSLContext
-    private val tableName = "cloud_lock"
+    val dslContext: DSLContext
+    val table = DSL.table(TABLE_NAME)
+
+    companion object {
+        const val TABLE_NAME = "cloud_lock"
+        const val ID = "id"
+        const val LOCK_NAME = "lock_name"
+        const val UPDATED_BY = "updated_by"
+        const val IS_LOCKED = "is_locked"
+        const val UPDATED_AT = "updated_at"
+    }
 
     init {
         val connection = dataSource.connection
@@ -24,15 +33,15 @@ class JooqRepository(dataSource: DataSource) : Repository {
     }
 
     override fun createSchema() {
-        dslContext.createTableIfNotExists(DSL.table(tableName))
-            .column("id", INTEGER.identity(true))
-            .column("lock_name", VARCHAR)
-            .column("updated_by", VARCHAR)
-            .column("locked", BOOLEAN)
-            .column("updated_at", TIMESTAMP)
+        dslContext.createTableIfNotExists(table)
+            .column(ID, INTEGER.identity(true))
+            .column(LOCK_NAME, VARCHAR)
+            .column(UPDATED_BY, VARCHAR)
+            .column(IS_LOCKED, BOOLEAN)
+            .column(UPDATED_AT, TIMESTAMP)
             .constraints(
-                constraint("lock_table_pk").primaryKey("id"),
-                constraint("cloud_lock_unique").unique("lock_name")
+                constraint("lock_table_pk").primaryKey(ID),
+                constraint("cloud_lock_unique").unique(LOCK_NAME)
             ).execute()
     }
 
@@ -46,7 +55,7 @@ class JooqRepository(dataSource: DataSource) : Repository {
 
     fun isLocked(lockName: String): Boolean {
         return dslContext.select(DSL.field("locked"))
-            .from(DSL.table(tableName))
+            .from(table)
             .where(DSL.field("lock_name").eq(lockName))
             .limit(1)
             .fetchOne(DSL.field("locked", Boolean::class.java)) ?: false
@@ -54,7 +63,7 @@ class JooqRepository(dataSource: DataSource) : Repository {
 
     private fun createLockedRecord(lockName: String, hostname: String, lock: Boolean) {
         val insert = dslContext.insertInto(
-            DSL.table(tableName),
+            table,
             DSL.field("lock_name"),
             DSL.field("updated_by"),
             DSL.field("locked"),
@@ -65,7 +74,7 @@ class JooqRepository(dataSource: DataSource) : Repository {
             .execute()
 
         if (insert == 0) {
-            dslContext.update(DSL.table(tableName))
+            dslContext.update(table)
                 .set(DSL.field("locked"), lock)
                 .set(DSL.field("updated_at"), DSL.now())
                 .where(
