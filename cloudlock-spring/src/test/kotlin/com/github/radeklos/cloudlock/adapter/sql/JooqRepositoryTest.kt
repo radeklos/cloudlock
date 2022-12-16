@@ -14,7 +14,6 @@ class JooqRepositoryTest(dataSource: DataSource) : FunSpec({
     test("should create lock record") {
         repository = JooqRepository(dataSource)
         repository.createSchema()
-
         repository.lock("lock_name", "hostname")
 
         repository.isLocked("lock_name") shouldBe true

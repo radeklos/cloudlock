@@ -1,6 +1,7 @@
 package com.github.radeklos.cloudlock.adapter
 
-import com.github.radeklos.cloudlock.adapter.LockState.*
+import com.github.radeklos.cloudlock.adapter.LockState.LOCKED
+import com.github.radeklos.cloudlock.adapter.LockState.UNLOCKED
 import com.github.radeklos.cloudlock.spring.core.CloudLockConfig
 
 class InMemoryAdapter : Adapter {

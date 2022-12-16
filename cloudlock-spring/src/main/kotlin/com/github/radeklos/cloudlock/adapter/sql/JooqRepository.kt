@@ -6,7 +6,10 @@ import org.jooq.conf.RenderQuotedNames
 import org.jooq.conf.Settings
 import org.jooq.impl.DSL
 import org.jooq.impl.DSL.constraint
-import org.jooq.impl.SQLDataType.*
+import org.jooq.impl.SQLDataType.BOOLEAN
+import org.jooq.impl.SQLDataType.INTEGER
+import org.jooq.impl.SQLDataType.TIMESTAMP
+import org.jooq.impl.SQLDataType.VARCHAR
 import javax.sql.DataSource
 
 class JooqRepository(dataSource: DataSource) : Repository {
