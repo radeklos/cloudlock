@@ -79,7 +79,7 @@ class PostgresAdapterTest(var dataSource: DataSource) : FunSpec({
         val callables: MutableList<CompletableFuture<LockState>> = ArrayList()
         repeat(10) {
             callables.add(CompletableFuture.supplyAsync({
-                adapter.getStateAndLockWhenUnlocked(CloudLockConfig("lock1_$random"), "hostname")
+                adapter.getStateAndLockWhenUnlocked(CloudLockConfig("lock1_$random"), UUID.randomUUID().toString())
             }, es))
         }
 
