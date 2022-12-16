@@ -1,6 +1,6 @@
 package com.github.radeklos.cloudlock.spring.aop
 
-import com.github.radeklos.cloudlock.adapter.dummy.InMemoryAdapter
+import com.github.radeklos.cloudlock.adapter.InMemoryAdapter
 import com.github.radeklos.cloudlock.spring.core.CloudLockConfig
 import io.kotest.assertions.timing.eventually
 import io.kotest.core.spec.style.FunSpec

@@ -1,12 +1,13 @@
 package com.github.radeklos.cloudlock.spring.aop
 
 import com.github.radeklos.cloudlock.adapter.Adapter
+import com.github.radeklos.cloudlock.adapter.LockState
 import com.github.radeklos.cloudlock.spring.core.CloudLockConfig
 
 class LockingExecutor(var adapter: Adapter) {
 
     fun <T> execute(task: TaskWithResult<T>, config: CloudLockConfig): TaskResult<T> {
-        if (!adapter.getStateAndLockWhenUnlocked(config)) {
+        if (adapter.getStateAndLockWhenUnlocked(config, hostName()) == LockState.UNLOCKED) {
             try {
                 return TaskResult.executed(task.call())
             } finally {
@@ -15,6 +16,8 @@ class LockingExecutor(var adapter: Adapter) {
         }
         return TaskResult.notExecuted()
     }
+
+    fun hostName() = System.getenv("COMPUTERNAME")
 
 }
 
