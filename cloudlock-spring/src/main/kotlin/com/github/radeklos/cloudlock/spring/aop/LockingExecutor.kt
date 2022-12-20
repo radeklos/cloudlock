@@ -1,5 +1,6 @@
 package com.github.radeklos.cloudlock.spring.aop
 
+import java.net.InetAddress;
 import com.github.radeklos.cloudlock.adapter.Adapter
 import com.github.radeklos.cloudlock.adapter.LockState
 import com.github.radeklos.cloudlock.spring.core.CloudLockConfig
@@ -17,7 +18,9 @@ class LockingExecutor(var adapter: Adapter) {
         return TaskResult.notExecuted()
     }
 
-    fun hostName() = System.getenv("COMPUTERNAME")
+    private fun hostName(): String {
+        return InetAddress.getLocalHost().hostName
+    }
 
 }
 
