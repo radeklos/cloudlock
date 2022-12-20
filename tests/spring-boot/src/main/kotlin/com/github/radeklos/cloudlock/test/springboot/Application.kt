@@ -33,7 +33,7 @@ class ScheduledConfig {
     }
 
     open class ScheduledBean {
-        var log = KotlinLogging.logger { }
+        private var log = KotlinLogging.logger { }
 
         @CloudLock
         @Scheduled(fixedRate = 5_000)

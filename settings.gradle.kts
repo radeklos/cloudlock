@@ -12,6 +12,5 @@ include(
     ":cloudlock-spring",
 
     ":spring-boot-test-app",
-
     ":tests:spring-boot",
 )

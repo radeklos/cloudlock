@@ -4,6 +4,7 @@ import com.github.radeklos.cloudlock.spring.annotation.CloudLock
 import com.github.radeklos.cloudlock.spring.annotation.EnableCloudLock
 import mu.KotlinLogging
 import org.springframework.boot.Banner
+import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -14,6 +15,7 @@ import java.time.Instant
 
 @EnableCloudLock
 @EnableScheduling
+@SpringBootApplication
 class Application
 
 fun main(args: Array<String>) {
