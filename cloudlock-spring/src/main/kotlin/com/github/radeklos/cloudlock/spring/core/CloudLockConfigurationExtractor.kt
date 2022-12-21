@@ -9,7 +9,7 @@ class CloudLockConfigurationExtractor {
     fun extractConfiguration(method: Method): CloudLockConfig {
         val annotation = getAnnotation(method)
         return CloudLockConfig(
-            name = annotation.name
+            name = annotation.name.ifBlank { "${method.declaringClass.canonicalName}.${method.name}" }
         )
     }
 
