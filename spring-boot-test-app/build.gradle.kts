@@ -16,7 +16,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     implementation("org.slf4j:slf4j-api:2.0.6")
-    implementation("org.slf4j:slf4j-simple:2.0.0-alpha1")
+    implementation("org.slf4j:slf4j-simple:2.0.6")
 
     implementation(libs.postgresql)
 
