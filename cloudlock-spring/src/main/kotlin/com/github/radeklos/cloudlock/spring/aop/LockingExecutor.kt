@@ -4,22 +4,24 @@ import java.net.InetAddress;
 import com.github.radeklos.cloudlock.adapter.Adapter
 import com.github.radeklos.cloudlock.adapter.LockState
 import com.github.radeklos.cloudlock.spring.core.CloudLockConfig
+import mu.KotlinLogging
 
 class LockingExecutor(var adapter: Adapter) {
 
+    private var log = KotlinLogging.logger { }
+    private var hostName = InetAddress.getLocalHost().hostName
+
     fun <T> execute(task: TaskWithResult<T>, config: CloudLockConfig): TaskResult<T> {
-        if (adapter.getStateAndLockWhenUnlocked(config, hostName()) == LockState.UNLOCKED) {
+        if (adapter.getStateAndLockWhenUnlocked(config, hostName) == LockState.UNLOCKED) {
             try {
+                log.info { "task executed, hostname=$hostName lock-name=${config.name}" }
                 return TaskResult.executed(task.call())
             } finally {
                 adapter.unlock(config)
+                log.info { "task was unlocked, hostname=$hostName lock-name=${config.name}" }
             }
         }
         return TaskResult.notExecuted()
-    }
-
-    private fun hostName(): String {
-        return InetAddress.getLocalHost().hostName
     }
 
 }
@@ -40,7 +42,7 @@ data class TaskResult<T> private constructor(
         }
 
         fun <T> notExecuted(): TaskResult<T> {
-            return TaskResult(true, null)
+            return TaskResult(false, null)
         }
     }
 }
