@@ -10,13 +10,12 @@ class LockInterceptor(
     private var lockConfigurationExtractor: CloudLockConfigurationExtractor,
 ) : MethodInterceptor {
 
-    var log = KotlinLogging.logger { }
+    private var log = KotlinLogging.logger { }
 
     override fun invoke(invocation: MethodInvocation): Any? {
-        log.info { "invocation started, this=${invocation.`this`}, method=${invocation.method}" }
         val config = lockConfigurationExtractor.extractConfiguration(invocation.method)
         val result = lockingExecutor.execute(invocation::proceed, config)
-        log.info { "invocation finished" }
+        log.info { "invocation finished, lock-name=${config.name} executed=${result.executed}" }
         return result
     }
 }
