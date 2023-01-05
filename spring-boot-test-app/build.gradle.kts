@@ -1,6 +1,6 @@
 plugins {
     id("org.springframework.boot") version "2.7.7"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.7.22"
+    id("org.jetbrains.kotlin.plugin.spring") version "1.8.0"
 }
 
 dependencies {
