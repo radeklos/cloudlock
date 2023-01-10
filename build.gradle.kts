@@ -5,7 +5,7 @@ plugins {
     application
 }
 
-group = "com.github.com.radeklos"
+group = "io.github.radeklos"
 version = "1.0-SNAPSHOT"
 
 repositories {
