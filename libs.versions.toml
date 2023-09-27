@@ -20,7 +20,7 @@ kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core",
 org-jooq-jooq = { group = 'org.jooq', name = 'jooq', version = '3.18.3' }
 h2 = { group = "com.h2database", name = "h2", version = "2.1.214" }
 postgresql = { group = "org.postgresql", name = "postgresql", version = "42.6.0" }
-mysql = { group = "mysql", name = "mysql-connector-java", version = "8.0.32" }
+mysql = { group = "mysql", name = "mysql-connector-java", version = "8.0.33" }
 
 hikari = { group = "com.zaxxer", name = "HikariCP", version = "5.0.1" }
 jakarta-xml-bind-api = { group = "jakarta.xml.bind", name = "jakarta.xml.bind-api", version = "4.0.0" }
