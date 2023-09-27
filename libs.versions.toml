@@ -1,7 +1,7 @@
 [versions]
 spring = "5.3.23"
 kotest = "5.6.2"
-spring-boot = "2.7.8"
+spring-boot = "2.7.16"
 
 [libraries]
 spring-boot-starter = { group = "org.springframework.boot", name = "spring-boot-starter", version.ref = "spring-boot" }
