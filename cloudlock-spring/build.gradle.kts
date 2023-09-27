@@ -1,5 +1,5 @@
 plugins {
-    id("org.jetbrains.kotlin.plugin.spring") version "1.8.0"
+    id("org.jetbrains.kotlin.plugin.spring") version "1.9.10"
 }
 
 
