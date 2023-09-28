@@ -1,6 +1,6 @@
 [versions]
 spring = "5.3.23"
-kotest = "5.6.2"
+kotest = "5.7.2"
 spring-boot = "2.7.16"
 
 [libraries]
