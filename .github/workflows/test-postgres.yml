@@ -41,6 +41,6 @@ jobs:
           SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/test
       - name: Publish Test Report
         if: ${{ always() }}
-        uses: mikepenz/action-junit-report@v3
+        uses: mikepenz/action-junit-report@v4
         with:
           report_paths: '**/build/test-results/test/TEST-*.xml'
