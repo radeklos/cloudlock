@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "io.github.radeklos"
-version = providers.environmentVariable("GITHUB_REF").getOrElse("local-SNAPSHOT")
+version = providers.environmentVariable("RELEASE_VERSION").getOrElse("local-SNAPSHOT")
 
 repositories {
     mavenCentral()
