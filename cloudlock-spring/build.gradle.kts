@@ -1,7 +1,7 @@
 plugins {
     id("org.jetbrains.kotlin.plugin.spring") version "1.9.10"
+    `java-library`
 }
-
 
 dependencies {
     implementation(libs.spring.boot.starter)
