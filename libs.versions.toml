@@ -19,7 +19,7 @@ kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core",
 
 org-jooq-jooq = { group = 'org.jooq', name = 'jooq', version = '3.18.7' }
 h2 = { group = "com.h2database", name = "h2", version = "2.2.224" }
-postgresql = { group = "org.postgresql", name = "postgresql", version = "42.7.0" }
+postgresql = { group = "org.postgresql", name = "postgresql", version = "42.7.2" }
 mysql = { group = "mysql", name = "mysql-connector-java", version = "8.0.33" }
 
 hikari = { group = "com.zaxxer", name = "HikariCP", version = "5.1.0" }
