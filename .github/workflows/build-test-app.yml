@@ -18,7 +18,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build -xtest
       - name: Upload artefacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: jar
           path: spring-boot-test-app/build/libs/spring-boot-test-app.jar
@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Get build JAR
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: jar
           path: spring-boot-test-app/build/libs/
