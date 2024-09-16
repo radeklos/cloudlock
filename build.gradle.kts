@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.9.25"
-    id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
+    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
     application
     `maven-publish`
     signing
